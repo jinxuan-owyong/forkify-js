@@ -18,6 +18,11 @@
   "homepage": "https://github.com/jinxuan-owyong/forkify-js#readme",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.5.0",
+    "eslint": "^8.14.0",
     "parcel": "^2.5.0"
+  },
+  "dependencies": {
+    "core-js": "^3.22.3",
+    "regenerator-runtime": "^0.13.9"
   }
 }
