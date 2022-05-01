@@ -12,8 +12,11 @@ const timeout = function (s) {
   });
 };
 
-const showRecipe = async function (id) {
+const showRecipe = async function () {
   try {
+    const id = window.location.hash.slice(1);
+    if (!id) return; // page loads without recipe ID
+
     // Load recipe ID
     renderSpinner(recipeContainer);
     const res = await fetch(
@@ -162,3 +165,7 @@ const renderSpinner = function (parentEl) {
   parentEl.innerHTML = '';
   parentEl.insertAdjacentHTML('afterbegin', markup);
 };
+
+['load', 'hashchange'].forEach((ev) => {
+  window.addEventListener(ev, showRecipe);
+});
