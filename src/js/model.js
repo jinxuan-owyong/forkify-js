@@ -1,15 +1,15 @@
+import { API_URL } from './config';
+import { getJSON } from './helper';
+
 export const state = {
   recipe: {},
 };
 
 export const loadRecipe = async function (id) {
   try {
-    const res = await fetch(
-      `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
-    );
-    const data = await res.json();
-
-    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+    const data = await getJSON(`${API_URL}/${id}`).catch((err) => {
+      alert(err);
+    });
 
     // Process recipe data
     const { recipe } = data.data;
@@ -24,6 +24,6 @@ export const loadRecipe = async function (id) {
       title: recipe.title,
     };
   } catch (err) {
-    alert(err);
+    console.error(err);
   }
 };
