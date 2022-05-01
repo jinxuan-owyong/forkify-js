@@ -1,0 +1,23 @@
+{
+  "name": "forkify-js",
+  "version": "0.1.0",
+  "description": "Recipe application",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jinxuan-owyong/forkify-js.git"
+  },
+  "author": "Jin Xuan Ow Yong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jinxuan-owyong/forkify-js/issues"
+  },
+  "homepage": "https://github.com/jinxuan-owyong/forkify-js#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.5.0",
+    "parcel": "^2.5.0"
+  }
+}
