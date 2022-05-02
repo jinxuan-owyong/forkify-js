@@ -6,6 +6,13 @@ class recipeView {
   #data;
   #markup;
 
+  // Publisher-Subscriber Pattern
+  addHandlerRender(handler) {
+    ['load', 'hashchange'].forEach((ev) => {
+      window.addEventListener(ev, handler);
+    });
+  }
+
   render(recipe) {
     // Render recipe
     this.#data = recipe;
