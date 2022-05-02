@@ -4,7 +4,8 @@ import fracty from 'fracty';
 class recipeView {
   #parentElement = document.querySelector('.recipe');
   #data;
-  #markup;
+  #errorMessage = "We couldn't find that recipe :( Please try again!";
+  #message = '';
 
   // Publisher-Subscriber Pattern
   addHandlerRender(handler) {
@@ -16,9 +17,8 @@ class recipeView {
   render(recipe) {
     // Render recipe
     this.#data = recipe;
-    this.#generateRecipeMarkup();
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML('afterbegin', this.#markup);
+    const markup = this.#generateRecipeMarkup();
+    this.#replaceParentHTML(markup);
   }
 
   renderSpinner() {
@@ -30,16 +30,46 @@ class recipeView {
     </div>
     `;
 
-    this.#clear;
+    this.#replaceParentHTML(markup);
+  }
+
+  renderError(message = this.#errorMessage) {
+    const markup = `
+    <div class="error">
+      <div>
+        <svg>
+          <use href="${icons}#icon-alert-triangle"></use>
+        </svg>
+      </div>
+      <p>${message}</p>
+    </div>
+    `;
+
+    this.#replaceParentHTML(markup);
+  }
+
+  renderMessage(message = this.#message) {
+    const markup = `
+    <div class="message">
+      <div>
+        <svg>
+          <use href="${icons}#icon-smile"></use>
+        </svg>
+      </div>
+      <p>${message}</p>
+    </div>
+    `;
+
+    this.#replaceParentHTML(markup);
+  }
+
+  #replaceParentHTML(markup) {
+    this.#parentElement.innerHTML = '';
     this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
-  #clear() {
-    this.#parentElement.innerHTML = '';
-  }
-
   #generateRecipeMarkup() {
-    this.#markup = `
+    return `
     <figure class="recipe__fig">
       <img 
         src="${this.#data.image}" 

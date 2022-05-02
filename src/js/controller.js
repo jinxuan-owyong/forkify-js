@@ -11,13 +11,13 @@ const controlRecipes = async function () {
 
     // loadRecipe returns a promise
     // recipe is stored in model.state.recipe (impure function)
-    await model.loadRecipe(id);
-    const { recipe } = model.state;
-
     recipeView.renderSpinner();
+    await model.loadRecipe(id);
+
+    const { recipe } = model.state;
     recipeView.render(recipe);
   } catch (err) {
-    alert(err);
+    recipeView.renderError();
   }
 };
 
