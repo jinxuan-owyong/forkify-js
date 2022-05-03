@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-catch */
-import { API_URL } from './config';
+import { API_URL, RESULTS_PER_PAGE } from './config';
 import { getJSON } from './helper';
 
 export const state = {
@@ -7,7 +7,9 @@ export const state = {
   search: {
     query: '',
     results: [],
+    page: 1,
   },
+  resultsPerPage: RESULTS_PER_PAGE,
 };
 
 export const loadRecipe = async function (id) {
@@ -49,4 +51,11 @@ export const loadSearchResults = async function (query) {
   } catch (err) {
     throw err;
   }
+};
+
+export const getSearchResultsPage = function (page = state.search.page) {
+  const startIndex = (page - 1) * state.resultsPerPage;
+  const endIndex = startIndex + state.resultsPerPage;
+
+  return state.search.results.slice(startIndex, endIndex);
 };
