@@ -16,11 +16,6 @@ export default class view {
   }
 
   update(data) {
-    // Load message if no data exists
-    if (!data || (Array.isArray(data) && data.length === 0)) {
-      return this.renderError();
-    }
-
     // Render data
     this._data = data;
     const newMarkup = this._generateMarkup();

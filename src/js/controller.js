@@ -19,9 +19,13 @@ const controlRecipes = async function () {
     // loadRecipe returns a promise
     // recipe is stored in model.state.recipe (impure function)
     recipeView.renderSpinner();
-    await model.loadRecipe(id);
 
+    // Update results to mark selected search result
+    resultsView.update(model.getSearchResultsPage());
+
+    await model.loadRecipe(id);
     const { recipe } = model.state;
+
     recipeView.render(recipe);
   } catch (err) {
     recipeView.renderError();
@@ -30,7 +34,7 @@ const controlRecipes = async function () {
 
 const renderPage = function () {
   // render search results by page number
-  const pageContents = model.getSearchResultsPage(model.state.search.page);
+  const pageContents = model.getSearchResultsPage();
   resultsView.render(pageContents);
 
   // render initial pagination buttons
