@@ -48,6 +48,9 @@ export const loadSearchResults = async function (query) {
         title: recipe.title,
       };
     });
+
+    // Reset to first page
+    state.search.page = 1;
   } catch (err) {
     throw err;
   }
