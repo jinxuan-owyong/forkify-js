@@ -2,7 +2,7 @@ import view from './view';
 import icons from 'url:../../img/icons.svg';
 import { RESULTS_PER_PAGE } from '../config';
 
-class paginationView extends view {
+class PaginationView extends view {
   _parentElement = document.querySelector('.pagination');
 
   addHandlerPagination(handler) {
@@ -53,4 +53,4 @@ class paginationView extends view {
   }
 }
 
-export default new paginationView();
+export default new PaginationView();

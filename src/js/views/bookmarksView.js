@@ -1,6 +1,6 @@
 import previewView from './previewView';
 
-class bookmarksView extends previewView {
+class BookmarksView extends previewView {
   _parentElement = document.querySelector('.bookmarks__list');
   _errorMessage = 'No bookmarks yet. Find a nice recipe and bookmark it :)';
   _message = '';
@@ -10,4 +10,4 @@ class bookmarksView extends previewView {
   }
 }
 
-export default new bookmarksView();
+export default new BookmarksView();

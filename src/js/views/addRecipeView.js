@@ -1,6 +1,6 @@
 import view from './view';
 
-class addRecipeView extends view {
+class AddRecipeView extends view {
   _parentElement = document.querySelector('.upload');
   _window = document.querySelector('.add-recipe-window');
   _overlay = document.querySelector('.overlay');
@@ -44,4 +44,4 @@ class addRecipeView extends view {
   _generateMarkup() {}
 }
 
-export default new addRecipeView();
+export default new AddRecipeView();

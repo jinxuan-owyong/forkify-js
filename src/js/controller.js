@@ -6,7 +6,7 @@ import paginationView from './views/paginationView';
 import recipeView from './views/recipeView';
 import resultsView from './views/resultsView';
 import searchView from './views/searchView';
-import bookmarksView from './bookmarksView';
+import bookmarksView from './views/bookmarksView';
 import addRecipeView from './views/addRecipeView';
 import { MODAL_CLOSE_DELAY } from './config';
 

@@ -1,6 +1,6 @@
 import view from './view';
 
-class searchView extends view {
+class SearchView extends view {
   _parentElement = document.querySelector('.search');
 
   addHandlerSearch(handler) {
@@ -17,4 +17,4 @@ class searchView extends view {
   }
 }
 
-export default new searchView();
+export default new SearchView();
