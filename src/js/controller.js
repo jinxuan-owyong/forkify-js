@@ -7,6 +7,8 @@ import recipeView from './views/recipeView';
 import resultsView from './views/resultsView';
 import searchView from './views/searchView';
 import bookmarksView from './bookmarksView';
+import addRecipeView from './views/addRecipeView';
+import { MODAL_CLOSE_DELAY } from './config';
 
 // if (module.hot) {
 //   module.hot.accept();
@@ -87,6 +89,26 @@ const controlBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
+const controlAddRecipe = async function (newRecipe) {
+  try {
+    addRecipeView.renderSpinner();
+    await model.uploadUserRecipe(newRecipe);
+
+    // Render user recipe
+    recipeView.render(model.state.recipe);
+    bookmarksView.render(model.state.bookmarks);
+
+    // Display success message and close modal after delay
+    addRecipeView.renderMessage();
+    setTimeout(() => addRecipeView.toggleWindow(), MODAL_CLOSE_DELAY * 1000);
+
+    // Recipe ID is passed to addHandlerUpload to update hash
+    return model.state.recipe.id;
+  } catch (err) {
+    addRecipeView.renderError(err.message);
+  }
+};
+
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
@@ -94,6 +116,7 @@ const init = function () {
   recipeView.addHandlerBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerPagination(controlPagination);
+  addRecipeView.addHandlerUpload(controlAddRecipe);
 };
 
 init();
