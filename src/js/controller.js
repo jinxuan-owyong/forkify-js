@@ -102,8 +102,8 @@ const controlAddRecipe = async function (newRecipe) {
     addRecipeView.renderMessage();
     setTimeout(() => addRecipeView.toggleWindow(), MODAL_CLOSE_DELAY * 1000);
 
-    // Recipe ID is passed to addHandlerUpload to update hash
-    return model.state.recipe.id;
+    // Change hash in URL
+    window.history.pushState(null, '', `#${model.state.recipe.id}`);
   } catch (err) {
     addRecipeView.renderError(err.message);
   }

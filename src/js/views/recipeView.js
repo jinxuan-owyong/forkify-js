@@ -31,6 +31,8 @@ class RecipeView extends view {
   }
 
   _generateMarkup() {
+    const isUserGenerated = this._data.key;
+
     return `
     <figure class="recipe__fig">
       <img 
@@ -80,11 +82,14 @@ class RecipeView extends view {
         </div>
       </div>
   
-      <div class="recipe__user-generated hidden">
+      <div class="recipe__user-generated 
+        ${isUserGenerated ? '' : 'hidden'}
+      ">
         <svg>
           <use href="${icons}#icon-user"></use>
         </svg>
       </div>
+      
       <button class="btn--round btn--bookmark">
         <svg class="">
           <use href="${icons}#icon-bookmark${
